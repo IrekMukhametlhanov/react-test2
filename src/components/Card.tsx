@@ -1,17 +1,30 @@
-import React from 'react';
+import React,{FC, useState} from 'react';
 
-
-interface Cardprops {
-    width: string;
-    height: string;
+export enum CardVariant {
+    outlined = 'outlined',
+    primary = 'primary'
 }
 
 
-const Card = ({width, height}: Cardprops) => {
+interface Cardprops {
+    width?: string;
+    height?: string;
+    variant: CardVariant;
+    children?: React.ReactChild | React.ReactNode;
+}
+
+
+const Card: FC<Cardprops> = ({width, height, children, variant}) => {
+
+ const [state, setState]= useState(0);
+
   return (
-    <div style={{width, background:'gray'}}>
-        Card
-        
+    <div style={{width,height, border: variant === CardVariant.outlined ? '1px solid gray ': 'none',
+     background: variant === CardVariant.primary ? 'lightgray' : ''
+    }}
+    
+    >
+      {children}
     </div>
   )
 }

@@ -1,12 +1,12 @@
-import React from 'react';
 
-import './App.css';
-import Card from './components/Card';
+import Card, {CardVariant} from './components/Card';
 
 function App() {
   return (
     <div className="App">
-      <Card width='200px' height='400px'/>
+      <Card variant={CardVariant.primary} width='200px' height='400px'>
+        <button>кнопка</button>
+      </Card>
     </div>
   );
 }
