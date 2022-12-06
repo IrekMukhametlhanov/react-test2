@@ -1,38 +1,30 @@
 
-import Card, {CardVariant} from './components/Card';
-import Userlist from './components/Userlist';
-import { Iuser } from './types/types';
+
+import {BrowserRouter, Route, Routes, Link} from 'react-router-dom';
+import UserPage from './components/UserPage';
+import TodosPage from './components/TodosPage';
+import UserItemPage from './components/UserItemPage';
+import TodoItemPage from './components/TodoItemPage';
 
 function App() {
-  
-  const users: Iuser[] = [
-    {
-      "id": 1,
-      "name": "Leanne Graham",
-      "email": "Sincere@april.biz",
-      "address": {
-        "street": "Kulas Light",
-        "zipcode": "92998-3874",
-        "city": "Gwenborough",
-        }
-    },{ 
-       "id": 1,
-      "name": "Leanne Graham",
-      "email": "Sincere@april.biz",
-      "address": {
-        "street": "Kulas Light",
-        "zipcode": "92998-3874",
-        "city": "Gwenborough",
-        }}
-  ]
-  return (
-    <div className="App">
-      <Card variant={CardVariant.primary} width='200px' height='400px'>
-        <button>кнопка</button>
-      </Card>
 
-      <Userlist users={users}/>
+
+  return (
+    <BrowserRouter>
+    <div className="App">
+      <div>
+        <Link to="/users">Users</Link>
+        <Link to='/todos'>Todos</Link>
+      </div>
+    <Routes>
+            <Route path="/users" element={<UserPage/>}/>
+            <Route path="/todos" element={<TodosPage/>}/>
+            <Route path="/users/:id" element={<UserItemPage/>}/>
+            <Route path="/todo/:id" element={<TodoItemPage/>}/>
+            <Route path="*" element={<div>NotFound</div>}/>
+     </Routes>
     </div>
+    </BrowserRouter>
   );
 }
 
